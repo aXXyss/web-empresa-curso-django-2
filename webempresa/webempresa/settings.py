@@ -11,7 +11,20 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
 import os
+
+
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env("SECRET_KEY")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -148,8 +161,8 @@ CKEDITOR_CONFIGS = {
 }
 
 # Email Config
-EMAIL_HOST = 'smtp.strato.com'
+EMAIL_HOST = env('ENV_EMAIL_HOST')
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'info@axxyss.com'
-EMAIL_HOST_PASSWORD = 'sined@969111'
+EMAIL_HOST_USER = env('ENV_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('ENV_EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465
