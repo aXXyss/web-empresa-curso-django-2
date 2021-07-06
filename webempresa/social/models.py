@@ -13,7 +13,7 @@ class Link(models.Model):
     class Meta:
         verbose_name = 'enlace'
         verbose_name_plural = 'enlaces'
-        ordering = ['-name']
+        ordering = ['name']
 
     def __str__(self):
         return self.name

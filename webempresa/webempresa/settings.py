@@ -15,15 +15,15 @@ from pathlib import Path
 import os
 
 
-import environ
+#import environ
 
 # Initialise environment variables
-env = environ.Env()
+#env = environ.Env()
 # reading .env file
-environ.Env.read_env()
+#environ.Env.read_env()
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = env("SECRET_KEY")
+#SECRET_KEY = env("SECRET_KEY")
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -75,7 +75,7 @@ ROOT_URLCONF = 'webempresa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social.processors.ctx_dict',               # agraga la función ctx_dict del archivo processors de la APP social
+                'social.processors.ctx_dict',               # agrega la función ctx_dict del archivo processors de la APP social
             ],
         },
     },
@@ -137,6 +137,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -161,8 +164,14 @@ CKEDITOR_CONFIGS = {
 }
 
 # Email Config
-EMAIL_HOST = env('ENV_EMAIL_HOST')
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = env('ENV_EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('ENV_EMAIL_HOST_PASSWORD')
-EMAIL_PORT = 465
+#EMAIL_HOST = env('ENV_EMAIL_HOST')
+#EMAIL_USE_SSL = True
+#EMAIL_HOST_USER = env('ENV_EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = env('ENV_EMAIL_HOST_PASSWORD')
+#EMAIL_PORT = 465
+
+# Email Config
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'd84d3a3983cfab'
+EMAIL_HOST_PASSWORD = '4a3f85ab73c9da'
+EMAIL_PORT = '2525'
