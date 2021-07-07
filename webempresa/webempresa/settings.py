@@ -14,17 +14,19 @@ from pathlib import Path
 
 import os
 
+######################################################################################
 
-#import environ
+import environ
 
 # Initialise environment variables
-#env = environ.Env()
+env = environ.Env()
 # reading .env file
-#environ.Env.read_env()
+environ.Env.read_env()
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-#SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
+######################################################################################
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -164,14 +166,8 @@ CKEDITOR_CONFIGS = {
 }
 
 # Email Config
-#EMAIL_HOST = env('ENV_EMAIL_HOST')
-#EMAIL_USE_SSL = True
-#EMAIL_HOST_USER = env('ENV_EMAIL_HOST_USER')
-#EMAIL_HOST_PASSWORD = env('ENV_EMAIL_HOST_PASSWORD')
-#EMAIL_PORT = 465
-
-# Email Config
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'd84d3a3983cfab'
-EMAIL_HOST_PASSWORD = '4a3f85ab73c9da'
-EMAIL_PORT = '2525'
+EMAIL_HOST = env('ENV_EMAIL_HOST')
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = env('ENV_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('ENV_EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 465
